@@ -1,0 +1,97 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/number_theory/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Fermat's theorem}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+
+We are concerned not with the famous "last" theorem but with Fermat's \emph{little} theorem.
+
+The theorem says that for any integer $a$ and any prime $p$ \emph{which does not divide a} ($a$ must be \emph{co-prime} to $p$):
+
+\[ a^{p-1} \equiv 1 \ \text{mod} \ p \]
+equivalently
+\[ a^p \equiv a \ \text{mod} \ p \]
+
+Euler proved this theorem (Fermat did not) and he extended it by showing that it is true, not just for $p$ prime, but for any $n$ coprime to $a$.
+
+\subsection*{examples}
+
+mod $13$:
+\[ 2^4 = 16 \equiv 3 \]
+\[ 2^{12} = 3 \cdot 3 \cdot 3 = 27 \equiv 1 \]
+and, mod $11$
+\[ 5^2 = 25 \equiv 3 \]
+\[ 5^4 = 9 \]
+\[ 5^8 = 81 \equiv 4 \]
+\[ 5^{10} = 3 \cdot 4 = 12 \equiv 1 \]
+
+\subsection*{proof}
+
+Write the multiples of $a$ smaller than $pa$.  Let
+\[ m_1 = a \]
+\[ m_2 = 2a \]
+\[ \dots \]
+\[ m_{p-1} = (p-1)a  \]
+
+\subsection*{lemma}
+
+$\circ$ \ No two of these, say $m_i$ and $m_j$, can be congruent mod $p$.
+
+Proof:
+
+Suppose on the contrary that there exist $m_j$ and $m_i$ that \emph{are} congruent (take $j > i$).  Congruence means that their difference:
+\[ m_j - m_i = (j - i)a \]
+is evenly divisible by $p$.  
+
+But by assumption, $p$ does not divide $a$.  
+
+So then $j - i$ must be divisible by $p$ (note:  this is Euclid's lemma).  
+
+But
+\[ 1 \le i < j \le (p-1) \] 
+Thus, certainly $j - i < p$ and so $p$ cannot divide $j-i$ either.
+
+Therefore, no two $m$'s are congruent.
+
+As a result, $p$ cannot divide the product $1 \cdot 2 \dots \cdot p-1$.
+
+Another way of putting this is to say that no prime $p$ can evenly divide any number smaller than itself, since each of those numbers has its own unique prime factorization, made up of factors smaller than $p$, and $p$ does not evenly divide any of them.
+
+Restatement:  no $m \equiv 0$ mod $p$.
+
+\subsection*{proof of the theorem}
+
+Since there are $p-1$ terms $m$, and no two are congruent mod $p$, they must correspond to $1 \dots (p-1)$ mod $p$, although they may occur in a different order after multiplication by $a$.
+
+The key result is that when these terms $m$ are multiplied out:
+\[ 1a \cdot 2a \dots \cdot (p-1)a = (p-1)! \ a^{p-1} \]
+
+after evaluation mod $p$, the same terms are equal to:
+\[ 1 \cdot 2 \dots \cdot (p-1)  = (p-1)! \]
+
+So we can cancel the $(p-1)!$, equate the two, and obtain:
+\[ a^{p-1} = 1 \ \text{mod} \ p \]
+\[ a^{p} = a \ \text{mod} \ p \]
+
+$\square$
+
+The requirement for $a$ and $p$ coprime arises because it ensures that each term $m_i$ appears only once. 
+
+
+\end{document}

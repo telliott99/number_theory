@@ -1,0 +1,44 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/calculus_book/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Euclid's Lemma proof}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+Since we just established the prime factorization theorem independent of Euclid’s lemma, we can use it in a simple proof of the same.
+
+\subsection*{Euclid's lemma}
+
+Suppose that $n = a \cdot b$. If $p|n$ then either $p|a$ or $p|b$ or both.
+
+\subsection*{proof}
+
+Suppose to the contrary, $p|n$ but $p$ does not divide either $a$ or $b$.
+
+Both $a$ and $b$ have a unique prime factorization and those factors multiplied together are the prime factors of $n$. These factors do not include $p$, and yet the factorization is unique. 
+
+This is a contradiction.
+
+$p$ must divide either $a$ or $b$, or both.
+
+$\square$
+
+\subsection*{example}
+
+Note that this is not necessarily true for non-primes.  For example, $6 \cdot 10 = 60 | 4$ but neither $6 | 4$ nor $10 | 4$.  This happens because $2$ is a prime factor of both $6$ and $10$, generating a factor of $4$ in the product.
+
+\end{document}

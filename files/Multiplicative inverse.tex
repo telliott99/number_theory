@@ -1,0 +1,107 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/number_theory/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Multiplicative inverse}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+\subsection*{statement}
+
+$a$ is the multiplicative inverse of $b$ (mod $n$) if
+\[ ab = 1 \ \text{mod} \ n \]
+
+That is, 
+\[ n = kab + 1 \]
+
+Obviously, $a$ and $b$ must be co-prime to $n$.  $n$ cannot divide either $a$ or $b$ because then it must be that $n | 1$.
+
+\subsection*{theorem}
+
+If $p$ is prime, then (mod $p$)
+\begin{quote} every $1 < a < p$ has a multiplicative inverse\end{quote}
+
+Furthermore, we claim that \emph{every} product has two unique factors mod $p$.
+
+The statement
+\[ ab \equiv r \ \text{mod} \ p \]
+is equivalent to
+\[ ab = qp + r \]
+
+Suppose that 
+\[ ab' = q'p + r \]
+then
+\[ a(b - b') = (q - q')p \]
+\[ a(b - b') \equiv 0 \]
+Since $a \ne 0$, it must be true that $b = b'$.
+
+\subsection*{examples}
+
+Suppose $a = 6$ and $b = 10$.  Then, $g = 2$ and so we write Bezout's identity:
+\[ 6s + 10t = 2 \]
+    
+Obviously, one of $s$ or $t$ must be negative.  
+
+One solution is $s = 2, t = -1$.  Another is $s = -3, t = 2$.  
+
+More generally, the integers of the form $sa + tb$ are exactly the multiples of $d$.
+
+Corollary:  $a$ and $b$ are co-prime with gcd $(a,b) = 1$, if and only if there exist integers $s$ and $t$ such that
+\[ sa + tb = 1. \]
+
+For example, if $a = 6$ and $b = 5$ then we can find
+\[ 6s + 5t = 1 \]
+A simple solution is $s = 1, t = -1$.
+
+An application is that if
+\[ 6s + 5t = 1 \]
+\[ 6s = 1 - 5t \]
+    
+then (mod $t$):
+\[ 6s = 1 \]
+$6$ is the multiplicative inverse of $s$ mod $t$.
+
+As an example, construct a table for $p = 17$.  In addition to $1 \cdot 17$, there are seven pairs and one square:
+
+\begin{verbatim}
+2.9 =    18 = 1
+3.6 =    18 = 1
+5.7 =    35 = 1
+4.13 =   52 = 1
+8.15 =  120 = 1
+10.12 = 120 = 1
+11.14 = 154 = 1
+16.16 = 256 = 1
+\end{verbatim}
+
+Notice that $16$ is its own inverse \emph{and} $16 \equiv -1$ mod $17$.  See Wilson's theorem.
+
+\subsection*{uniqueness}
+
+Bezout's lemma says that for every $a$ with gcd$(a,p)$ = 1 (and this is true of every $a < p$, there exists 
+\[ sa + tp = 1 \]
+That is
+\[ sa \equiv 1  \ \text{mod} \ p  \]
+So, there exists an $s$ which is the multiplicative inverse for $a$.
+
+Why is there only one such $s$ smaller than $p$?
+
+Suppose that $a$ has two inverses mod $p$.  That is
+\[ as \equiv as' \equiv 1 \]
+By the cancellation property 
+\[ s \equiv s' \]
+
+\end{document}

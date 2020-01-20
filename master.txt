@@ -1,0 +1,33 @@
+# First
+
+Fundamentals
+Integers
+Infinity
+Primes
+Modular arithmetic
+Congruence
+
+Fundamental Theorem of Arithmetic
+Prime factorization
+Euclid's lemma
+Fermat's theorem
+
+Euclid
+Quotient remainder rule
+Euclidean algorithm
+Bezout's identity sketch
+
+Classical approach to FTA
+Bezout's identity
+Euclid's lemma again
+FTA standard proof
+
+The inverse
+Euler's totient
+Chinese remainder
+Multiplicative inverse
+Wilson's theorem
+# More stuff from factorization in Crypto
+
+Squares
+Pythagorean triples

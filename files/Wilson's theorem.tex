@@ -1,0 +1,51 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/number_theory/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Wilson's Theorem}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+\subsection*{theorem}
+
+Let $p$ be prime.  Then
+\[ (p-1)! = -1 \ \text{mod} \ p \]
+
+\subsection*{proof}
+
+If $p$ is prime, then $x < p$ may be its own multiplicative inverse. 
+\[ x^2 = 1 \ \text{mod} \ p  \]
+
+However, this (must) happen only if
+\[ x^2 - 1 = 0 \ \text{mod} \ p   \]
+\[ (x - 1)(x + 1) = 0 \ \text{mod} \ p  \]
+
+That is, $x - 1 = 0$ mod $p$ or $x + 1 = 0$, mod $p$.
+
+But the only numbers in $[1 \dots p]$ which satisfy this are $1$ and $p-1$.  
+
+Therefore, no other number can be its own multiplicative inverse.
+
+Consider the product 
+\[ (p-1)! = 1 \cdot 2 \dots \cdot (p-1) \]
+
+For nearly all the factors in the factorial the multiplicative inverse is also present, and that pair then contribute only $1$ to the product (mod $p$).
+
+The exceptions $1$ and $(p-1)$ are their own inverses.  The result follows.
+
+
+
+\end{document}

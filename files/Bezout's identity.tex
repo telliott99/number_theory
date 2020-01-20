@@ -1,0 +1,126 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/number_theory/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Bezout's identity}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+This proof is a bit challenging at the critical step.  
+
+We follow Aitken 
+
+\url{https://public.csusm.edu/aitken_html/m422/Handout1.pdf}
+
+Another source is Hefferon 
+
+\url{http://joshua.smcvt.edu/numbertheory/book.pdf} 
+
+\subsection*{theorem}
+
+$\circ$ \ let $a$ and $b$ be integers, not both zero
+
+$\circ$ \ form a linear combination: $sa + tb$
+
+$\circ$ \ there is a least positive such combination with value $d$
+
+$\circ$ \ there is also a greatest common divisor or gcd$(ab) = g$
+
+$\circ$ \ the theorem says that $g = d$
+
+\subsection*{proof of the theorem}
+
+Def 1.  A common divisor of $a$ and $b$ is an integer that divides both $a$ and $b$.
+
+Def 2.  A linear combination is $sa + tb$, for integer $s$ and $t$
+
+P3.  Let $d$ be a common divisor of $(a,b)$, then $d \ | \ sa + tb$.
+
+Proof:
+
+We have $a = dk$ and $b =dl$ for some integer $k$ and $l$ so
+
+\[ sa + tb = s(dk) + t(dl) = d(sk + tl) \]
+
+P4.  If $a$ and $b$ are both non-zero, then the GCD exists.
+
+Proof:  
+
+Suppose $a \ne 0$ and $S$ is the set of common divisors.  $1 \in S$.
+    
+$\circ$ \ $S$ is not empty since $1 \in S$
+
+$\circ$ \ the maximum element of $S$ is $|a|$
+
+$\circ$ \ Therefore $S$ has a maximum $d$ and $d \ge 1$
+
+P5.  There is a \emph{least} positive integer combination $sa + tb$.
+
+Proof:  For convenience suppose $a \ne 0$.  Let $S$ be the set of positive linear combinations.
+
+$\circ$ \ clearly, $|a| \in S$
+
+$\circ$ \ $S$ is not empty
+
+$\circ$ \ $S$ has a minimum
+
+Here is the tricky part.
+
+\subsection*{lemma}
+
+If $a \ne 0$ and $b \ne 0$, then the least positive linear combination of $a$ and $b$ is a common divisor of $a$ and $b$.
+
+Proof:  
+
+Let $m = sa + tb$ be the least positive linear combination of $a$ and $b$.
+
+Using the Quotient Remainder Rule write $a = qm + r$.  So
+
+\[ r = a - qm \]
+\[ = a - q(sa + tb) \]
+\[ = a(1 - qs) - qtb \]
+
+The quotient rule defines $0 \le r < m$.
+
+$\circ$ \ r is non-negative
+
+$\circ$ \ $r$ is a linear combination (above)
+
+$\circ$ \ but $m$ is the smallest positive linear combination
+
+Therefore $r = 0$.
+
+Since $r = 0$, $a = qm$ and therefore $m|a$.  
+
+Similarly, $m|b$.  $m$ is a common divisor of $a$ and $b$.
+
+\subsection*{theorem}
+
+T7.  (Bezout's Identity).  If $a$ and $b$ are not both zero, then the least positive linear combination of $a$ and $b$ is equal to their greatest common divisor.
+
+Proof:
+
+Let $m$ be the least positive linear combination, and let $g$ be the GCD.
+
+$\circ$ \  $g|m$ by Proposition 3, which means that $g \le m$
+
+$\circ$ \  by the lemma, $m$ is a common divisor
+
+$\circ$ \  the greatest common divisor is $g$, so $g < m$ cannot be true
+
+Therefore, $g = m$.
+
+\end{document}

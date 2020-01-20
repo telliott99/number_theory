@@ -1,0 +1,64 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/calculus_book/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Euclid's Lemma}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+\subsection*{Euclid's lemma}
+
+Every natural number $n > 1$, i.e. every positive integer greater than $1$, is either prime, or it is the product of two smaller natural numbers $a$ and $b$.
+
+Suppose a given prime $p$ divides $n = ab$, i.e. $p|n$.
+
+We claim that either $p|a$ or  $p|b$ (or both).
+
+Given the theorem on prime factorization, proved by a method independent of Euclid's lemma, there is a very simple proof of Euclid's lemma.
+
+Here is a more standard approach.
+
+\subsection*{Bezout's identity}
+
+We rely on Bezout's identity, which says that there exist integers $r$ and $s$ such that
+\[ ra + sp = d \]
+
+where $d$ is the greatest common divisor of $a$ and $p$.
+
+Of course, if $p$ is prime, then
+\[ ra + sp = 1 \]
+
+\subsection*{proof}
+
+Suppose that $p|n = ab$ but gcd$(p,a) = 1$.
+
+Then, we can find a linear combination of $a$ and $p$ in the integers such that:
+\[ ra + sp = 1 \]
+
+But then, 
+\[ b(ra + sp) = b \]
+\[ rab + spb = b \]
+
+Since $p|p$ and $p|ab$ (by hypothesis), $p|b$, as desired.
+
+\subsection*{converse}
+On the other hand, if $p$ is not prime, it must be composite, i.e. $p=ab$.  
+
+In that case, $p$ divides neither $a$ nor $b$ (since they are smaller than $p$).  
+
+\url{https://artofproblemsolving.com/wiki/index.php/Euclid%27s_Lemma}
+
+\end{document}

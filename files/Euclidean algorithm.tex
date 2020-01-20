@@ -1,0 +1,100 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/number_theory/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Euclidean Algorithm}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+Consider two natural numbers $a$ and $b$.  Usually $a$ is an integer (i.e., it is allowed to be negative), but to keep things simple here we will say that $a$ and $b$ are positive integers, with $a > b$.
+
+We can find their \emph{greatest common divisor}.
+
+This is written gcd$(a,b)$, or just $(a,b)$.
+
+$(a,b)$ is the largest number which evenly divides both $a$ and $b$.
+
+To find it, simply write the unique prime factorization of $a$ and $b$.
+
+\begin{verbatim}
+180 = 2.2.3.3.5
+140 = 2.2.    5.7
+gcd = 2.2.    5     = 20
+\end{verbatim}
+
+Pick out the common factors and the gcd$(a,b)$ will be their product.
+
+\subsection*{problem}
+
+However, factorization is hard, and is actually impossible for the really large numbers used in cryptography.  It is important that we do not need to factor $a$ and $b$ for the algorithm to work.
+
+\subsection*{how it works}
+
+Find integers $0 \le r < b$ and $q > 0$ such that
+\[ a = b \cdot q + r \]
+This relies on the quotient remainder rule.
+
+$\circ$ If $r = 0$ we are done:  $b$ divides $a$ equally.  Otherwise
+
+$ \circ$ switch $a = b$ and $b = r$ and repeat.  Then $b$ is the gcd of the original $a$ and $b$.  
+
+In our example
+
+\begin{verbatim}
+180 = 140.1 + 40
+140 =  40.3 + 20
+ 40 =  20.2 + 0
+gcd =  20
+\end{verbatim}
+
+\subsection*{why it works}
+
+Now let $u$ be the largest integer that divides both $a$ and $b$ (the greatest common divisor)
+\[ a = su \]
+\[ b = tu \]
+Then 
+\[ a = b \cdot q + r \]
+\[ su = q \cdot tu + r \]
+\[ r = su - q \cdot tu \]
+We conclude that $u$ divides $r$.
+
+Every common divisor of $a$ and $b$ is also a divisor of $b$ and $r$.
+
+\subsection*{Python code}
+
+Here are two examples of programs in different styles that implement the algorithm (with no error checking):
+
+\begin{verbatim}
+def gcd(a,b):
+    r = a % b
+    if r == 0:
+        return b
+    return gcd(b,r)
+\end{verbatim}
+
+\begin{verbatim}
+def gcd(a,b):
+    r = a % b
+    while r != 0:
+        a,b = b,r
+        r = a % b
+    return b
+\end{verbatim}
+
+The first version is \emph{recursive}, it may call itself.  The second uses a \textbf{while} loop to accomplish the same thing.
+
+
+\end{document}

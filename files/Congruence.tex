@@ -1,0 +1,126 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/number_theory/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Congruence}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+Here are three equivalent statements about congruence.  Two numbers $a$ and $b$ are congruent modulo $m$ (or with modulus $m$) if
+
+$\circ$ \ they leave the same remainder when divided by $m$.
+\[ a = jm + r, \ \ \ \ \ \ \ b = km + r \]
+and then we have that
+\[ a - b = m(j - k) = dm \]
+
+$\circ$ \ $m$ divides the difference between $a$ and $b$ evenly
+
+so
+
+$\circ$ \ $a = b + dm$
+
+This is written as $m|a-b$ and sometimes as
+\[ a \equiv b \ \text{(mod} \ m \]
+
+\subsection*{example}
+\[ 7 \equiv 12 \ \text{(mod} \ 5) \]
+
+because $7 = 1 \cdot 5 + 2$ and $12 = 2 \cdot 5 + 2$.  This extends to negative numbers
+\[ -8 = -2 \cdot 5 + 2 \]
+
+The numbers evenly divisible by $m = 5$ are 
+\[ \dots -10, -5, 0, 5 , 10 \dots \]
+because we can find integer $d$ such that $dm = a$ or $dm = b$.
+
+If there is a remainder, for positive $a$, the difference between $a$ and the next \emph{smaller} multiple of $m$ is $r$.
+
+This is also true for $b < 0$, but to avoid confusion remember that the next smaller multiple is \emph{larger} in absolute value.  The multiples of $5$ that "bracket" $-8$ are $-2 \cdot 5$ and $-1 \cdot 5$.  Both these statements are true:
+\[ -10 < -5 \]
+\[ |-10| > |5| \]
+For $a > 0$ and $b < 0$, it is still true that $m$ divides the difference between $a$ and $b$ evenly.  The difference between $12$ and $-8$ is $20$, which \emph{is} evenly divisible by $5$.
+
+Courant and Robbins:
+
+\begin{quote}The usefulness of Gauss’s congruence notation lies in the fact that congruence with respect to a fixed modulus has many of the formal properties of ordinary equality.\end{quote}
+
+For example, congruence is transitive.  If (mod $m$):
+\[ a \equiv b, \ \ \ \ \ \ b \equiv c \ \ \  \rightarrow \ \ \ a \equiv c \]
+
+\subsection*{arithmetic}
+
+Congruences may be added, subtracted and multiplied.  Simply consider the remainders modulus $m$.  If (mod $m$):
+\[ a \equiv r_1, \ \ \ \ \ \ b \equiv r_2 \]
+then
+\[  a + b \equiv r_1 + r_2 \]
+\[  a - b \equiv r_1 - r_2 \]
+\[  ab \equiv r_1 \cdot r_2 \]
+
+where it is recognized that the results $r_1 \pm r_2$ and $r_1 \cdot r_2$ may need to be taken module $m$ again.
+
+Proofs:
+
+We can find $j$ and $k$ such that
+\[ a = jm + r_1, \ \ \ \ \ \ \ b = km + r_2 \]
+so
+\[ a + b = (j + k)m + r_1 + r_2 \]
+\[ a - b = (j - k)m + r_1 - r_2 \]
+and
+\[ a \cdot b = (jm + r_1) + (km + r_2) \]
+\[ a \cdot b = m \cdot (jkm + jr_2 + kr_1) + r_1 \cdot r_2 \]
+
+$\square$
+
+Multiplication implies the \emph{cancellation} property.  If 
+\[ ac \equiv bc \]
+then
+\[ a \equiv b \]
+
+Proof:  write the multiplication equality backward.
+
+Also, if $a \equiv a'$ and $b \equiv b'$ then
+\[ a + b = a' + b' \]
+
+\subsection*{powers of 10}
+Suppose we look at modulus $11$ as an example.
+\[ 10 \equiv -1 \]
+\[ 10^2 \equiv (-1)(-1) = 1 \]
+\[ 10^3 \equiv (1)(-1) = -1 \]
+so we obtain alternating plus and minus one.
+
+Therefore, any integer
+\[ z = a_0 + a_1 \cdot 10 + a_2 \cdot 10^2 + \dots + + a_n \cdot 10^n \]
+leaves the same remainder on division by $11$ as
+\[ (a_0 - a_1) + (a_2 - a_3) + \dots \]
+
+It follows that a number is divisible by $11$ if and only if the alternating sum of its digits is divisible by $11$.
+
+\subsection*{example}
+
+To what number between $0$ and $12$ inclusive is the following product congruent modulo $13$?
+\[ 3 \cdot 7 \cdot 11\cdot 17 \cdot 19 \cdot 23 \cdot 29 \cdot 113 \]
+
+We have:
+\[ 3 \cdot 7 = 21 \equiv 8 \]
+\[ 11 \cdot 17 \equiv 11 \cdot 4 = 5 \]
+\[ 19 \cdot 23 \equiv 6 \cdot 10 = 60 \equiv 8 \]
+\[ 29 \cdot 113 = 3 \cdot 9 = 27 \equiv 1 \]
+so
+\[ 8 \cdot 5 \equiv 40 \equiv 1 \]
+And the final result is $8$.
+
+which is easily checked in Python or by using a calculator to find the product ($5623656423$), and then divide by $13$.
+
+\end{document}

@@ -1,0 +1,94 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/number_theory/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Standard proof of FTA}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+We will prove that every integer has a unique prime factorization.
+
+\[ n = p_1 \cdot p_2 \dots p_i \]
+
+In this list of prime factors, a factor may be repeated.  For example $12 = 2 \cdot 2 \cdot 3$.
+
+This is our second proof of the theorem.  A preliminary result that is needed for this version is called Euclid's lemma.
+
+\subsection*{Euclid's lemma}
+
+Every positive integer greater than 1 is either prime, or it is the product of two smaller natural numbers $a$ and $b$.
+
+But the same is true of $a$ and $b$ in turn.  So every $n = ab$ is the product of the prime factors of $a$ times the prime factors of $b$.
+
+Suppose a given prime $p$ divides $n=ab$, i.e. $p|n$.
+
+Then $p|a$ or $p|b$, or both.
+
+\subsection*{quick proof of FTA}
+
+The proof is by contradiction.
+
+Now, suppose $p$ is prime and and $p | ab$ but $p$ divides neither $a$ nor $b$.
+
+Because $a$ and $p$ are co-prime, Bezout says that there exist integers $x$ and $y$ such that:
+\[ ax + py = 1 \]
+
+similarly (because $b$ and $p$ are co-prime) there exist $X$ and $Y$ such that:
+\[ bX + pY = 1 \]
+    
+so
+\[ 1 = (ax + py)(bX + pY) \]
+\[ 1 = axbX + axpY + pybX + p^2yY \]
+\[ 1 = ab(xX) + p(axY + ybX + pyY) \]
+    
+Since $p | ab$, $p$ divides the right hand side, so $p$ divides the left-hand side, that is, $p | 1$.  But this is absurd.  
+
+Therefore,  $p$ divides at least one of $a$ and $b$.
+
+
+\subsection*{proof of FTA}
+
+The proof is by induction.
+
+Assume the lemma is true for all numbers between $1$ and $n$. It is certainly true for $n < 31$, because we can check each case.
+
+If $n$ is prime there is nothing to prove and we move to $n + 1$.
+
+If $n$ is not prime, then there exist integers $a$ and $b$ (with $1 < a \le b < n$) such that $n = a \cdot b$.
+
+By the induction hypothesis, since $a < n$ and $b < n$, $a$ has prime factors $p_1 \cdot p_2 \dots$ and $b$ has prime factors $q_1 \cdot q_2 \dots$ so
+\[ n = ab = p_1 \cdot p_2 \dots  q_1 \cdot q_2 \dots \]
+
+This shows there exists a prime factorization of $n$.
+
+\subsection*{uniqueness}
+
+To show that the prime factorization is unique, suppose that $n$ is the smallest integer for which there exist two different factorizations:
+\[ n = p_1 \cdot p_2 \dots p_i \]
+and
+\[ n = q_1 \cdot q_2 \dots q_j \]
+
+Pick the first factor $p_1$.  Since $p_1$ divides $n = q_1 q_2 \dots$, by Euclid's lemma, it must divide some particular $q_j$.  Rearrange the $q$'s to make that $q$ the first one.
+
+But since $p_1$ divides $q_1$ and both are prime, it follows that $p_1 = q_1$.
+
+As wikipedia says now:
+
+\begin{quote}This can be done for each of the $m$ $p_i$'s, showing that $m \le n$ and every $p_i$ is some $q_j$.  Applying the same argument with the $p$'s and $q$'s reversed shows $n \le m$ (hence $m = n$) and every $q_j$ is a $p_i$.\end{quote}
+
+$\square$
+
+\end{document}
