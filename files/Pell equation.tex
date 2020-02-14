@@ -1,0 +1,209 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/number_theory/png/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Problems}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+
+\subsection*{Silverman, 1.1}
+
+\begin{quote}The first two numbers that are both squares and triangles are 1 and 36.  Find the next one and, if possible, the one after that.  Can you figure out an efficient way to find triangular square numbers?  Do you think there are infinitely many?\end{quote}
+
+A "triangle" or triangular number is constructed from positive integer $n$ as 
+\[ \frac{n (n+1)}{2} \]
+The sequence is
+
+\begin{verbatim}
+  1    3    6   10   15   21   28   36   45   55  
+ 66   78   91  105  120  136  153  171  190  210
+\end{verbatim}
+
+No more squares yet.  Obviously, it will be much easier to use the computer to find more.  We continue:
+
+\begin{verbatim}
+231  253  276  300  325  351  378  406  435  465
+496  528  361  595  630  666  703  741  780  820
+861  903  946  990 1035 1081 1128 1176 1225
+\end{verbatim}
+
+The first three triangular numbers that are also perfect squares
+\begin{verbatim}
+  1  36 1225
+\end{verbatim}
+
+\[ 49 \cdot 50 = 2450 = 2 \cdot 35^2 \]
+
+Rather than pre-compute squares, I came up with a routine to test for that:
+
+\begin{verbatim}
+def is_square(x):
+    s = int(x**0.5)
+    return s**2 == x
+\end{verbatim}
+
+The Python int function returns the floor of a decimal number.  So then:
+
+\begin{verbatim}
+def f(r):
+    for i in range(r):
+        t = i*(i+1)/2
+        if is_square(t):
+            s = int(t**0.5)
+            print i, t, s, s**2
+\end{verbatim}
+
+
+which gives
+
+\begin{verbatim}
+>>> f(10000)
+0 0 0 0
+1 1 1 1
+8 36 6 36
+49 1225 35 1225
+288 41616 204 41616
+1681 1413721 1189 1413721
+9800 48024900 6930 48024900
+\end{verbatim}
+
+So we have two sequences, the squares
+\begin{verbatim}
+1   6   35   204   1189   6930
+1  36 1225 41616  ..
+\end{verbatim}
+and the $n$ for the triangular numbers.
+\begin{verbatim}
+1   8   49   288   1681   9800
+\end{verbatim}
+
+I'm looking for a pattern, and I found two.  Here are the good triangular numbers:
+\[ 1 = 1^2, \ \ \ \ \ \ 8 = 3^2 - 1, \ \ \ \ \ \ 49 = 7^2 \]
+\[ 288 = 17^2 - 1, \ \ \ \ \ \ 1681 = 41^2, \ \ \ \ \ \ 9800 = 99^2 - 1 \]
+They are odd squares 
+\begin{verbatim}
+1 3 7 17 41 99
+\end{verbatim}
+with alternating $-1$... 
+ 
+\subsection*{pattern with differences}
+
+The difference between each root is
+
+\begin{verbatim}
+2 4 10 24 58 
+\end{verbatim}
+
+Each successive difference is 
+\[ d_n = 2 \cdot d_{n-1} + d_{n-2} \]
+which predicts that the next two differences are $140$ and $338$
+
+\begin{verbatim}
+2 4 10 24 58 140 338
+\end{verbatim}
+
+$\circ$ \ the next root would be $99 + 140 = 239$ with $239^2 = 57121$. 
+
+$\circ$ \ the root following that would be $577$ with $577^2 - 1 = 332928$.
+
+\subsection*{pattern with roots}
+This can also be seen as a pattern with the roots themselves:
+\begin{verbatim}
+2 .  3 +   1 =    7
+2 .  7 +   3 =   17
+2 . 17 +   7 =   41
+2 . 41 +  17 =   99
+2 . 99 +  41 =  239
+2 .239 +  99 =  577
+2 .577 + 239 = 1393
+\end{verbatim}
+
+Let's check:
+\begin{verbatim}
+>>> f(1000000)
+0 0 0 0
+1 1 1 1
+8 36 6 36
+49 1225 35 1225
+288 41616 204 41616
+1681 1413721 1189 1413721
+9800 48024900 6930 48024900
+57121 1631432881 40391 1631432881
+332928 55420693056 235416 55420693056
+\end{verbatim}
+
+So now, what remains is to figure out \emph{why} this happens.
+
+
+\subsection*{Pell equation}
+
+If we look again at the basic equation:
+\[ n^2 + n - 2q^2 = 0 \]
+
+We can solve for $n$ in terms of a given $q$:
+\[ n = (1/2) \cdot \ [ \ -1 + \sqrt{1 + 8q^2)} \ ]  \]
+
+which can only be integer if the discriminant ($D = 1 + 8q^2$) is a perfect square \emph{and also} the numerator is evenly divisible by $-2$.
+
+The solutions are:
+
+$\circ$ \ $q = 1, D = 9, \sqrt{D} = 3, n = 1$
+
+$\circ$ \ $q = 6, D = 289, \sqrt{D} = 17, n = 8$
+
+$\circ$ \ $q = 35, D = 9801, \sqrt{D} = 99, n = 49$
+
+$\circ$ \ $q = 204, D = 332929, \sqrt{D} = 577, n = 288$
+
+\url{http://precollegiate.stanford.edu/circle/math/Pell.pdf}
+
+According to the link, a slightly different approach is to first multiply by $4$
+\[ 4n^2 + 4n = 8q^2 \]
+\[ (2n + 1)^2 - 1 = 8q^2 \]
+
+which suggests the substitutions $x = 2n + 1$ and $y = 2q$ giving
+\[ x^2 - 2y^2 = 1 \]
+which is a Diophantine equation whose particular type is a Pell equation.  Remember to reverse the substitution at the end.
+
+We can find one solution by inspection:  $x = 3, y = 2$.  So $n = 1, q = 1$.
+
+Factor
+\[ (x + \sqrt{2}y)(x - \sqrt{2}y) = 1 \]
+Plug in the first solution:
+\[ (3 + 2\sqrt{2})(3 - 2\sqrt{2}) = 1 \]
+
+Square both sides
+\[ (3 + 2\sqrt{2})(3 + 2\sqrt{2}) \ (3 - 2\sqrt{2})(3 - 2\sqrt{2}) = 1 \]
+\[ (17 + 12\sqrt{2}) (17 - 12\sqrt{2}) = 1 \]
+We have produced a new solution by squaring the old one.  We have $x = 17, y = 12$, which we can check and it works.  Then $n = 8, q = 6$.
+
+\[ (3 + 2\sqrt{2})(17 + 12\sqrt{2}) \ (3 - 2\sqrt{2})(17 - 12\sqrt{2}) = 1 \]
+\[ (99 + 70\sqrt{2}) (99 - 70\sqrt{2}) = 1 \]
+We have produced a new solution by squaring the old one.  We have $x = 99, y = 70$, which we can check and it works.  Then $n = 49, q = 35$.
+
+That's our third solution.
+
+Finally, 
+\[ (x + \sqrt{2}y)(x - \sqrt{2}y) = 1 \]
+if $y = \sqrt{2}$ then 
+\[ (x + 2)(x - 2) = 1 \]
+\[ x^2 = 5 \]
+\[ x = \sqrt{5} \]
+
+
+
+\end{document}

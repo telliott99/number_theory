@@ -1,9 +1,12 @@
-# python /Users/telliott/Github/number_theory/combine.py
-# python /Users/telliott/Github/number_theory/combine.py > full.tex
+# python combine.py > full.tex
+# python /Users/telliott/Github/precalculus/combine.py > full.tex
+
+# debug:
+# python /Users/telliott/Github/precalculus/combine.py master
 
 # need typeset 2x to get toc filled out!
-
 import sys
+
 path = '/Users/telliott/Github/number_theory/'
 
 def load(fn):
@@ -13,7 +16,7 @@ def load(fn):
     return data
 
 def get_chapters():
-    fn = 'master.txt'
+    fn = 'chapters.txt'
     parts = load(fn).strip().split('\n\n')
     parts = [e for e in parts if not e.lstrip().startswith('#')]
     rL = list()

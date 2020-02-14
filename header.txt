@@ -21,9 +21,9 @@ urlcolor=red]{hyperref}
 
 %\setcounter{tocdepth}{0}
 
-\graphicspath{{/Users/telliott/Github/number_theory/png/}}
+\graphicspath{{/Users/telliott/Github/figures/}}
 
-\title{Basic Number Theory}
+\title{Number Theory}
 \author{Tom Elliott}
 \date{\today}
 

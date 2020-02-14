@@ -1,0 +1,103 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}
+\geometry{letterpaper} 
+\usepackage{graphicx}
+	
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{hyperref}
+
+\graphicspath{{/Users/telliott/Github/figures/}}
+% \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
+
+\title{Integers}
+\date{}
+
+\begin{document}
+\maketitle
+\Large
+
+\subsection*{infinity}
+The symbol for infinity is $\infty$.
+
+In the old days, they used to write things like
+\[ \frac{1}{0} = \infty,  \ \ \ \ \ \ \frac{1}{\infty} = 0 \]
+
+John Wallis wrote $24/0 = \infty$, in 1656, which is when the $\infty$ symbol was introduced with its current definition.  Even Euler argued that $n/0 = \infty$ when it suited him,
+
+It is claimed that the symbol derives from the Roman symbol for 100 million.  That's interesting.  I never knew any symbols larger than $M$, for one thousand.  And I'm not sure I believe it, but that's what some people say.
+
+According to
+
+\url{https://notevenpast.org/dividing-nothing/}
+
+\begin{quote}
+On 21 September 1997, the USS Yorktown battleship was testing “Smart Ship” technologies on the coast of Cape Charles, Virginia. At one point, a crew member entered a set of data that mistakenly included a zero in one field, causing a Windows NT computer program to divide by zero. This generated an error that crashed the computer network, causing failure of the ship’s propulsion system, paralyzing the cruiser for more than a day.
+\end{quote}
+
+\subsection*{no division by zero}
+There is a fundamental problem when we set up a division problem and $0$ is in the denominator.  What goes wrong when we attempt to divide by zero?
+\[ \frac{a}{0} = \ ? \]
+
+Well, what do we mean by an expression such as 
+\[ \frac{a}{b} = c \]
+
+By \emph{definition}, we mean that we will try to find $c$ such that
+\[ c \cdot b = a \]
+
+For the integers, of course, there is the problem of a possible remainder.  Let us leave that aside for a minute.
+
+Suppose we have $c \cdot b = a$ but then take $b$ to be very small though not 0.  In that case, the number $c$ may get very large.  That's OK.  
+
+We can make $b$ as small as we wish by making $c$ large enough or vice versa.  And we can say that as $b \rightarrow 0$, then $c \rightarrow \infty$.
+
+But we can't say $a/0 = $ some number.
+
+If there were such a number (say $a/0 = \infty$, infinity), then what about 
+\[ \frac{b}{0} = \ ??, \ \ \ \ \ \ \frac{c}{0} = \ ??  \]
+It would mean that whatever the expression $b/0$ is equal to, when multiplied by zero, we would obtain any number whatsoever.  This makes no sense.
+
+Here is another, perhaps silly, example.
+\[ 0 \cdot 1 = 0 \]
+\[ 0 \cdot 2 = 0 \]
+so
+\[ 0 \cdot 1 = 0 \cdot 2 \]
+but then
+\[ 1 = 2 \]
+
+By definition, we do not allow division by zero.
+
+\subsection*{infinity is not a number}
+
+And we can't answer the question what is $2 \cdot \infty$?  If we allowed multiplication by $\infty$ then the only reasonable answer would be
+\[ 2 \cdot \infty = \infty \]
+so then also
+\[ n \cdot \infty = \infty \]
+where $n$ is any number.  But then say
+\[ 2 \cdot \infty = 3 \cdot \infty \]
+so, cancelling
+\[ 2 = 3 \]
+This would be a mess.
+
+By definition, \emph{infinity is not a number} and division by $0$ is \emph{undefined}.
+
+\subsection*{limits}
+Often people say that calculus is all about limits, and they are certainly where you start in proving the theoretical basis of the field.  
+
+We will keep the discussion of limits and $\epsilon$-$\delta$ formalism to a minimum for the reasons explained in the Introduction.  But let us try to establish an intuitive idea about what we mean when we say "in the limit as $N \rightarrow \infty$".
+
+Above we had that there is no greatest integer.
+
+A corollary of that is the limit
+\[ \lim_{n \rightarrow \infty} \frac{(n + 1) - n}{n} = 0 \]
+Why?  As $n$ increases without bound, the difference between successive numbers, as a fraction of $n$, tends to zero.
+
+To get an idea about this, first simplify by multiplying by $1/n$ on top and bottom.  Then we have
+\[ \lim_{n \rightarrow \infty} \frac{(1 + 1/n - 1)}{1} = \frac{1}{n} \]
+
+We say that $1/n$ \emph{tends} to zero as $n \rightarrow \infty$, and so does $[(n+1)-n]/n$.
+
+
+\end{document}

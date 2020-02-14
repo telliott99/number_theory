@@ -9,82 +9,150 @@
 \usepackage{color}
 \usepackage{hyperref}
 
-\graphicspath{{/Users/telliott/Github/number_theory/png/}}
+\graphicspath{{/Users/telliott/Github/figures/}}
 % \begin{center} \includegraphics [scale=0.4] {gauss3.png} \end{center}
 
-\title{Hardy proof of FTA}
+\title{Prime factorization}
 \date{}
 
 \begin{document}
 \maketitle
 \Large
 
-We will prove that every integer has a unique \emph{prime factorization}.  
-
-This is also called \emph{the fundamental theorem of arithmetic}.
+We will prove that every integer has a unique \emph{prime factorization}.  This is also called \emph{the fundamental theorem of arithmetic}.
 
 \[ n = p_1 \cdot p_2 \dots p_k \]
 
-In the list of the prime factors of $n$, a factor may be repeated.  For example $12 = 2 \cdot 2 \cdot 3$.  To test uniqueness, we also suppose they are sorted from smallest to greatest.
+In the list of the prime factors of $n$, a factor may be repeated.
 
-\subsection*{proof}
+Example:
 
-Hardy and Wright (\emph{Theory of Numbers}, sect. 2:11) have a proof of prime factorization, different than the standard one, which I find quite elegant.
+\[ 12 = 2 \cdot 2 \cdot 3 \]
 
-Its great virtue is that it simplifies the proof of Euclid's lemma, which leads to Bezout's identity, and that proof is tedious.
+To compare two factorizations for uniqueness, we suppose they are sorted (say, from smallest to greatest).
 
-It is a proof by contradiction.
+More examples for relatively small numbers:
 
+\[ 39 = 3 \cdot 13 \]
+\[ 144 = 2 \cdot 2 \cdot 2 \cdot 2 \cdot 3 \cdot 3 \]
+\[ 210 = 2 \cdot 3 \cdot 5 \cdot 7 \]
+\[ 2310 = 2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \]
+
+Sometimes the factors can be hard to find.
+
+Example:
+
+Let's try $123456789$.  By using the digit addition trick, we can tell that this number is divisible by $9$ (I get $9 + 9 + 9 + 9 + 9$).
+
+At first it seems easy.  I found two factors of $3$, leaving $13717421$.
+
+Then my luck ran out.  The smallest prime factor was too large for me to find by hand.  So I used Python.
+
+\url{https://gist.github.com/telliott99/3043a0d9ddc44f8503c83c848b2f8382}
+
+$3607$ and $3803$ are the two prime factors of that number, which once found, are easily confirmed.  Factoring is a hard problem.
+
+\subsection*{background}
+
+We will prove the unique prime factorization theorem.
+
+But before starting on that, remember that when we say that one integer \emph{evenly divides} another one, written as $a|n$ or $a$ is a factor of $n$, we mean there exists another integer $k$ such that
+
+\[ a \cdot k = n \]
+$a$ times $k$ is exactly equal to $n$ with no remainder.
+
+Take care to distinguish $a|b$ ($a$ divides $b$) from $a/b$ ($a$ divided by $b$).
+
+If there is also a number $m$ where $a$ evenly divides $m$, we write $a|m$ and mean that
+\[ a \cdot j = m \]
+
+Addition or subtraction of $m + n$ gives
+\[ m + n = a \cdot j + a \cdot k = a(k + j) \]
+\[ m - n = a \cdot j - a \cdot k = a(k - j) \]
+
+$\bullet$ \ If $a|m$ and $a|n$, $a$ also divides their sum or difference.
+
+We rely on this fact below.
+
+Also, we can manually check all the numbers up to some reasonable lower limit, like $100$.  They all have unique prime factorizations.  Therefore, if there is a number with two such factorizations, it is larger than $100$, and there must be a smallest such number.
+
+\subsection*{abnormal numbers}
+
+Hardy and Wright (\emph{Theory of Numbers}, sect. 2:11) have a proof of prime factorization which I find quite elegant.
+
+Proof.
+
+By contradiction.
+
+Hardy:
 \begin{quote}Let us call numbers which can be factored into primes in more than one way, \emph{abnormal}, and let $n$ be the smallest abnormal number.\end{quote}
+
+Start by supposing that there are two different factorizations of $n$:
+\[ n = p_1 \cdot p_2 \dots p_k \]
+and
+\[ n = q_1 \cdot q_2 \dots q_j \]
+where the $p$'s and $q$'s are all primes.
 
 \subsection*{Different factorizations}
 
-As a preliminary result, the same prime $P$ cannot appear in two different factorizations of $n$, for, if it did, $n/P$ would be abnormal and yet $n/P < n$, the smallest abnormal number.
+As a preliminary result, consider the possibility that some factor appears in both factorizations, that some $p$ is equal to a $q$.
 
-Thus, we have that
+Let us rearrange if necessary so the shared factor is listed first:  let $p_1 = q_1$ and
 
-\[ n = p_1 p_2 \dots p_k \]
-and
-\[ n = q_1 q_2 \dots q_j \]
-    
-where the $p$ and $q$ are primes, and no $p$ is a $q$ and no $q$ is a $p$.
+\[ n = p_1 \cdot p_2 \dots p_k \]
+\[ n = p_1 \cdot q_2 \dots q_j \]
 
-If there exist abnormal numbers with two factorizations, those factorizations must be completely different.
+But now, $n/p_1$ ($n$ divided by $p_1$) is abnormal, because it has two different prime factorizations.  
 
-\subsection*{setup}
+That is impossible, because $n$ is the smallest abnormal number.
 
-In this part, we establish that $p_1 \cdot q_1 < n$.
+Therefore, no $p$ is a $q$ and no $q$ is a $p$.  If there exist abnormal numbers with two factorizations, those factorizations must be completely different.
 
-We may take $p_1$ to be the least $p$ and $q_1$ to be the least $q$.  
+\subsection*{inequality}
 
-Since $n$ is composite, either $p_1^2 = n$ (and $p_1$ is the only factor of $n$),
+We may take $p_1$ to be the least $p$ and $q_1$ to be the least $q$.  In this part, we establish that $p_1 \cdot q_1 < n$.
 
-Or $p_1$ times the largest $p_k = n$, so $p_1 < p_k$, $p_1 p_k = n$ and so $p_1^2 < n$.
+Since $n$ is composite, either 
 
-A similar result holds for $q_1$, but since $p_1 \ne q_1$, either $p_1^2 < n$ or $q_1^2 < n$ or perhaps both statements are true.
+$\circ$ \ $p_1 \cdot p_1 = n$, or
 
-From this, it follows that $p_1 q_1 < n$. 
+$\circ$ \ $p_1$ times some number larger than $p_1$ is equal to $n$.
+
+In the second case, $p_1 \cdot p_1 < n$.
+
+A similar result holds for $q_1$.
+
+But, since $p_1 \ne q_1$, only one of $p_1$ or $q_1$ at most, can be squared to give $n$.  Either $p_1 \cdot p_1 < n$ or $q_1 \cdot q_1 < n$ or perhaps both are true.
+
+From this it follows that 
+\[ p_1 \cdot q_1 < n \] 
 
 \subsection*{the contradiction} 
 
-Let $N = n - p_1 q_1$.
+Let 
+\[ N = n - p_1 q_1 \]
+We known that $N$ is not abnormal (because $n$ is the smallest abnormal number).
 
-We have $0 < N < n$ and also that $N$ is not abnormal.
+We have that $N > 0$ because of the result of the last section.  We also know that $N < n$, since $p_1$ and $q_1$ are non-zero and we subtracted them from $n$.  So $0 < N < n$.
 
-We're given that $p_1 | n$ and so, from the above equality, it must be that $p_1 | N$.
+We're given that $p_1 | n$ and so, from the above equality 
+\[ N = n - p_1 q_1 \]
+and our preliminary result about what factorization means, it must be that $p_1 | N$. The same is true for $q_1$, namely $q_1 | N$.  
 
-A similar result is true for $q_1$, namely $q_1 | N$.  
+Hence both $p_1$ and $q_1$ appear in the unique factorization of $N$, so $p_1q_1 | N$.
 
-Hence both $p_1$ and $q_1$ appear in the unique factorizations of both $N$ and $p_1 q_1$.
+Certainly, $p_1 q_1$ divides itself, so it follows that $p_1 q_1 | n$, using our preliminary result about factorization.
 
-From this it follows that $p_1 q_1 | n$ and hence $q_1 = n/p_1$.  
+Hence, $q_1| (n/p_1)$.  
 
-But $n/p_1$ is less than $n$ and has the unique prime factorization $p_2 p_3 \dots p_k$.
+But $n/p_1$ is less than $n$ and has the unique prime factorization $p_2 \cdot p_3 \dots p_k$.
 
 Since $q_1$ is not a $p$, this is impossible.  
 
-Hence there cannot be any abnormal numbers, and this is the fundamental theorem.
+Hence there cannot be any abnormal numbers.
 
 $\square$
+
+As we said, this is \emph{fundamental theorem of arithmetic}, so it's worth a bit of effort for the proof.
 
 \end{document}

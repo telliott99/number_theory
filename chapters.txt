@@ -31,3 +31,4 @@ Wilson's theorem
 
 Squares
 Pythagorean triples
+Pell equation
